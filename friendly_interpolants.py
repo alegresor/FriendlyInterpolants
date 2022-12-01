@@ -119,7 +119,7 @@ class FriendlyInterpolant(object):
                     ax.set_zlabel(r'$\mathrm{%s}$'%self.ycol if j==1 else r'$\mathrm{%s}^\mathrm{tf}$'%self.ycol)
             fig.suptitle('%s = %s(%s,%s)\nTransformed Domain | Original Domain'%(self.ycol,self.name,x0col,x1col))
             #pyplot.subplots_adjust(left=0,bottom=0.1,right=1,top=0.9,wspace=0.2,hspace=0.2)
-        plot_mod(fig,ax)
+        plot_mod(fig)
         fig.savefig('%s%s.png'%(fig_root,name),dpi=128,format='png',bbox_inches='tight')
         pyplot.close(fig)
     def _parse_dwrt(self, dwrt):
