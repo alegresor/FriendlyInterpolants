@@ -1,5 +1,6 @@
 from scipy.interpolate import *
 from numpy import *
+import pandas as pd
 
 class FriendlyInterpolant(object):
     def __init__(self, df, tf_funs={}, xcols=None, ycol='y', name='model', plot=False, plot_mod=lambda fig,ax: None, fig_root='./', plot_ops={}):
