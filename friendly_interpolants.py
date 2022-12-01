@@ -1,4 +1,4 @@
-from scipy.interpolate import *
+import scipy.interpolate
 from numpy import *
 import pandas as pd
 
@@ -184,7 +184,7 @@ class CubicSpline1D_FI(FriendlyInterpolant):
         ord = argsort(x)
         xsort = x[ord]
         ysort = y[ord]
-        self.model = CubicSpline(xsort,ysort,extrapolate=True)
+        self.model = scipy.interpolate.CubicSpline(xsort,ysort,extrapolate=True)
     def _eval_with_grad(self, x, dwrt):
         y = self.model(x.squeeze(),dwrt[0])
         return y
@@ -192,8 +192,8 @@ class CubicSpline1D_FI(FriendlyInterpolant):
 class LinearAndNearestNeighbor_FI(FriendlyInterpolant):
     def _fit(self, x, y):
         assert x.shape[1]>1
-        self.inhull_model = LinearNDInterpolator(x,y,rescale=True)
-        self.outhull_model = NearestNDInterpolator(x,y,rescale=True)
+        self.inhull_model = scipy.interpolate.LinearNDInterpolator(x,y,rescale=True)
+        self.outhull_model = scipy.interpolate.NearestNDInterpolator(x,y,rescale=True)
     def _eval_with_grad(self, x, dwrt):
         assert (dwrt==0).all() # derivitives not supported by LinearAndNearestNeighbor_FI
         y = self.inhull_model(x)
@@ -203,7 +203,7 @@ class LinearAndNearestNeighbor_FI(FriendlyInterpolant):
 class SmootheSpline2D_FI(FriendlyInterpolant):
     def _fit(self, x, y):
         assert x.shape[1]==2 # SmootheSpline2D_FI only supports 2D input features
-        self.model = SmoothBivariateSpline(x=x[:,0],y=x[:,1],z=y)
+        self.model = scipy.interpolate.SmoothBivariateSpline(x=x[:,0],y=x[:,1],z=y)
     def _eval_with_grad(self, x, dwrt):
         y = self.model(x=x[:,0],y=x[:,1],dx=dwrt[0],dy=dwrt[1],grid=False)
         return y
