@@ -3,7 +3,7 @@ from numpy import *
 import pandas as pd
 
 class FriendlyInterpolant(object):
-    def __init__(self, df, tf_funs={}, xcols=None, ycol='y', name='model', plot=False, plot_mod=lambda fig,ax: None, fig_root='./', plot_ops={}):
+    def __init__(self, df, tf_funs={}, xcols=None, ycol='y', name='model', plot=False, plot_mod=lambda fig: None, fig_root='./', plot_ops={}):
         """
         Args:
             df (pd.DataFrame): dataframe of features and response vector.
