@@ -1,1 +1,2 @@
 from .friendly_interpolants import CubicSpline1D_FI,LinearAndNearestNeighbor_FI,SmootheSpline2D_FI
+self.empty = False
