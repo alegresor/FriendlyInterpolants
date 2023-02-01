@@ -21,6 +21,7 @@ class FriendlyInterpolant(object):
             fig_root (str): output directory for figure
             plot_ops (dict): plotting options
         """
+        self.empty = False
         for k,v in {'sepfl':0,'sepfr':0,'sepfb':0,'sepft':0,'scatter':True,'view_init_azim':45}.items():
             if k not in plot_ops: plot_ops[k] = v
         if isinstance(df,ndarray):
